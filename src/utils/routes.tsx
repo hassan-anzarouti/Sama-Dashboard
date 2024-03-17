@@ -22,6 +22,7 @@ import {
   FaUser,
   FaUserLock,
   FaUserTie,
+  FaUsers,
 } from "react-icons/fa";
 import { FiGrid, FiMap, FiMapPin, FiShoppingCart } from "react-icons/fi";
 import Home from "../pages/home";
@@ -30,6 +31,12 @@ import RegionForm from "../components/region/region-form";
 import CitiesPage from "../pages/cities";
 import CityForm from "../components/city/city-form";
 import CityDetailsPage from "../components/city/city-details";
+import EmployeesPage from "../pages/employees";
+import EmployeeForm from "../components/employees/employees-form";
+import EmployeeDetailsPage from "../components/employees/employees-details";
+import ClientsPage from "../pages/clients";
+import ClientForm from "../components/clients/clients-form";
+import ClientDetailsPage from "../components/clients/clients-details";
 
 // import { GiPayMoney, GiSplitArrows, GiTable } from 'react-icons/gi'
 
@@ -109,6 +116,48 @@ export const routes: IRoute[] = [
       {
         path: "details/:id",
         component: <CityDetailsPage />,
+      },
+    ],
+  },
+  {
+    labelKey: "الموظفون",
+    icon: <FaUsers />,
+    path: "/employees",
+    hasSubMenus: false,
+    component: <EmployeesPage />,
+    crudRoutes: [
+      {
+        path: "update/:id",
+        component: <EmployeeForm />,
+      },
+      {
+        path: "create",
+        component: <EmployeeForm />,
+      },
+      {
+        path: "details/:id",
+        component: <EmployeeDetailsPage />,
+      },
+    ],
+  },
+  {
+    labelKey: "العملاء",
+    icon: <FaUserTie />,
+    path: "/clients",
+    hasSubMenus: false,
+    component: <ClientsPage />,
+    crudRoutes: [
+      {
+        path: "update/:id",
+        component: <ClientForm />,
+      },
+      {
+        path: "create",
+        component: <ClientForm />,
+      },
+      {
+        path: "details/:id",
+        component: <ClientDetailsPage />,
       },
     ],
   },
