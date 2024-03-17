@@ -37,6 +37,8 @@ import EmployeeDetailsPage from "../components/employees/employees-details";
 import ClientsPage from "../pages/clients";
 import ClientForm from "../components/clients/clients-form";
 import ClientDetailsPage from "../components/clients/clients-details";
+import OrdersPage from "../pages/orders";
+import OrderForm from "../components/orders/orders-form";
 
 // import { GiPayMoney, GiSplitArrows, GiTable } from 'react-icons/gi'
 
@@ -154,6 +156,27 @@ export const routes: IRoute[] = [
       {
         path: "create",
         component: <ClientForm />,
+      },
+      {
+        path: "details/:id",
+        component: <ClientDetailsPage />,
+      },
+    ],
+  },
+  {
+    labelKey: "الطلبات",
+    icon: <FaChalkboard />,
+    path: "/orders",
+    hasSubMenus: false,
+    component: <OrdersPage />,
+    crudRoutes: [
+      {
+        path: "update/:id",
+        component: <OrderForm />,
+      },
+      {
+        path: "create",
+        component: <OrderForm />,
       },
       {
         path: "details/:id",
