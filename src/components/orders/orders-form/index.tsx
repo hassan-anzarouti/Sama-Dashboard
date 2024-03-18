@@ -253,7 +253,7 @@ const Form = () => {
 
           <Col xs={24} lg={12}>
             <FieldBuilder
-              label="اسم العميل"
+              label="اسم الزبون"
               rules={{ required: true }}
               name="CustomerName"
               input={{ type: "text" }}
@@ -262,7 +262,7 @@ const Form = () => {
 
           <Col xs={24} lg={12}>
             <FieldBuilder
-              label="رقم العميل"
+              label="رقم الزبون"
               rules={{ required: true }}
               name="CustomerPhone"
               input={{ type: "text" }}
