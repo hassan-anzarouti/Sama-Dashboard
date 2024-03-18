@@ -163,24 +163,31 @@ export const routes: IRoute[] = [
       },
     ],
   },
+
   {
     labelKey: "الطلبات",
     icon: <FaChalkboard />,
-    path: "/orders",
-    hasSubMenus: false,
-    component: <OrdersPage />,
-    crudRoutes: [
+    path: "/",
+    hasSubMenus: true,
+    subMenus: [
       {
-        path: "update/:id",
-        component: <OrderForm />,
-      },
-      {
-        path: "create",
-        component: <OrderForm />,
-      },
-      {
-        path: "details/:id",
-        component: <ClientDetailsPage />,
+        path: "/orders",
+        labelKey: "سجل الطلبيات",
+        component: <OrdersPage />,
+        crudRoutes: [
+          {
+            path: "update/:id",
+            component: <OrderForm />,
+          },
+          {
+            path: "create",
+            component: <OrderForm />,
+          },
+          {
+            path: "details/:id",
+            component: <ClientDetailsPage />,
+          },
+        ],
       },
     ],
   },

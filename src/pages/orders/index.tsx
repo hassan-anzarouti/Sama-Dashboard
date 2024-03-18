@@ -91,20 +91,20 @@ const Orders = () => {
             loading={loading.includes("delete")}
             onClick={async () => {
               actions.getDetails(record);
-              navigate(`details/${record?.RegionID}`, { state: record });
+              navigate(`details/${record?.OrderNo}`, { state: record });
             }}
           />
           <EditBtn
             loading={loading.includes("delete")}
             onClick={async () => {
               actions.getDetails(record);
-              navigate(`update/${record?.RegionID}`, { state: record });
+              navigate(`update/${record?.OrderNo}`, { state: record });
             }}
           />
 
           <DeleteBtn
             onConfirm={async () => {
-              await actions.deleteOrder(record?.RegionID);
+              await actions.deleteOrder(record?.OrderNo);
             }}
             loading={loading.includes("delete")}
           />
