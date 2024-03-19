@@ -109,7 +109,7 @@ const Form = () => {
   return (
     <>
       <PageHeader
-        title={details ? "تعديل الكلب" : "انشاء طلب"}
+        title={details ? "تعديل الطلب" : "انشاء طلب"}
         subTitle={details ? "يتم تعديل الطلب" : "اضافة طلب جديد"}
         extra={[
           <Button
@@ -156,6 +156,7 @@ const Form = () => {
         defaultValues={{ ...details }}
       >
         <Row gutter={[16, 8]}>
+          {/* By default now */}
           <Col xs={24} lg={12}>
             <FieldBuilder
               label="تاريخ الطلب"
@@ -187,7 +188,7 @@ const Form = () => {
               }}
             />
           </Col>
-
+          {/* TODO selcet region based on city */}
           <Col xs={24} lg={12}>
             <FieldBuilder
               label="المنطقة"
@@ -268,6 +269,7 @@ const Form = () => {
               input={{ type: "text" }}
             />
           </Col>
+          {/* By default 1 */}
           <Col xs={24} lg={12}>
             <FieldBuilder
               label="الحالة"
@@ -278,16 +280,16 @@ const Form = () => {
           </Col>
           <Col xs={24} lg={12}>
             <FieldBuilder
-              label="سعر التوصيل"
+              label="المندوب"
               rules={{ required: true }}
               name="SalesRep"
               input={{ type: "number" }}
             />
           </Col>
-
+          {/* TODO when selecting a city the fields chang auto and the are disabled */}
           <Col xs={24} lg={12}>
             <FieldBuilder
-              label="كلفة التوصبل"
+              label="أجرة المندوب"
               rules={{ required: true }}
               name="SalesRepCost"
               input={{ type: "number" }}
@@ -303,7 +305,7 @@ const Form = () => {
           </Col>
           <Col xs={24} lg={12}>
             <FieldBuilder
-              label="كامل السعر"
+              label="السعر الكلي"
               rules={{ required: true }}
               name="TotalPrice"
               input={{ type: "number" }}

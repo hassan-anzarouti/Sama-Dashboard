@@ -50,7 +50,7 @@ const Orders = () => {
       key: "CustomerPhone",
     },
     {
-      title: "مكان التوصيل",
+      title: "المدينة",
       dataIndex: "City_Orders_CityToCity",
       align: "center",
       key: "City_Orders_CityToCity",
