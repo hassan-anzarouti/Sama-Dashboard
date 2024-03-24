@@ -48,7 +48,7 @@ const Orders = () => {
       },
     },
     {
-      title: "رقم العميل",
+      title: "رقم الزبون",
       dataIndex: "CustomerPhone",
       align: "center",
       key: "CustomerPhone",
@@ -290,12 +290,12 @@ const Orders = () => {
         <form id="form" onSubmit={handleSubmit(onSubmit)}>
           <Row gutter={16}>
             <Col xs={24} lg={12}>
-              <FormItem label="رقم العميل">
+              <FormItem label="رقم الزبون">
                 <Controller
                   control={control}
                   name="customerphone"
                   render={({ field }) => {
-                    return <Input {...field} placeholder="رقم العميل" />;
+                    return <Input {...field} placeholder="رقم الزبون" />;
                   }}
                 />
               </FormItem>
