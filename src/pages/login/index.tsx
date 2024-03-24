@@ -71,7 +71,7 @@ const Login: React.FC = () => {
           }}
         >
           <Form.Item
-            name="employee_name"
+            name="username"
             label="اسم المستخدم"
             rules={[
               {
