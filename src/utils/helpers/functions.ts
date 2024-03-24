@@ -13,3 +13,8 @@ export const getpage = (page: number, pageSize: number) => {
 export const nextPage = (page: number, pageSize: number) => {
   return page * pageSize;
 };
+
+export const filterOption = (
+  input: string,
+  option?: { label: string; value: string }
+) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase());

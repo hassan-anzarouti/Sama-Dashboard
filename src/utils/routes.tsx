@@ -167,7 +167,7 @@ export const routes: IRoute[] = [
   {
     labelKey: "الطلبات",
     icon: <FaChalkboard />,
-    path: "/",
+    path: "/manage-orders",
     hasSubMenus: true,
     subMenus: [
       {

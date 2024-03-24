@@ -4,6 +4,7 @@ import ClientService from "./clients";
 import EmployeeService from "./employees";
 import OrdersService from "./orders";
 import RegionService from "./regions";
+import StatusService from "./statuses";
 
 export default class EndPoints {
   public static auth = new AuthService();
@@ -12,4 +13,5 @@ export default class EndPoints {
   public static employee = new EmployeeService();
   public static client = new ClientService();
   public static order = new OrdersService();
+  public static status = new StatusService();
 }
