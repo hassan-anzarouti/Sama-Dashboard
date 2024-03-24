@@ -2,6 +2,7 @@ import {
   Avatar,
   Button,
   Col,
+  DatePicker,
   Divider,
   Image,
   Input,
@@ -29,7 +30,10 @@ import FormItem from "../../components/general/form-item";
 import OrderContext from "../../contexts/orders/context";
 import OrderContextProvider from "../../contexts/orders/provider";
 import dayjs from "dayjs";
+import { filterOption } from "../../utils/helpers/functions";
 // import { tableOnChange } from "../../utils/helpers/table-sorts-filters";
+
+const { RangePicker } = DatePicker;
 
 const Orders = () => {
   const columns: ColumnProps<any>[] = [
@@ -50,7 +54,7 @@ const Orders = () => {
       key: "CustomerPhone",
     },
     {
-      title: "مكان التوصيل",
+      title: "المدينة",
       dataIndex: "City_Orders_CityToCity",
       align: "center",
       key: "City_Orders_CityToCity",
@@ -59,12 +63,31 @@ const Orders = () => {
       },
     },
     {
+      title: "المنطقة",
+      dataIndex: "RegionName",
+      align: "center",
+      key: "RegionName",
+      render: (_, record) => {
+        return <>{record?.Region_Orders_RegionToRegion?.RegionName}</>;
+      },
+    },
+    {
       title: "الحالة",
       dataIndex: "Status_Orders_StatusToStatus",
       align: "center",
       key: "Status_Orders_StatusToStatus",
       render: (_, record) => {
-        return <Tag>{record?.Status_Orders_StatusToStatus?.Status}</Tag>;
+        return (
+          <Tag
+            color={
+              record?.Status_Orders_StatusToStatus?.Status === "تم التسليم"
+                ? "green"
+                : ""
+            }
+          >
+            {record?.Status_Orders_StatusToStatus?.Status}
+          </Tag>
+        );
       },
     },
     {
@@ -72,6 +95,12 @@ const Orders = () => {
       dataIndex: "CustomerName",
       align: "center",
       key: "CustomerName",
+    },
+    {
+      title: "التوصيل",
+      dataIndex: "Delivery",
+      align: "center",
+      key: "Delivery",
     },
     {
       title: "المبلغ الكامل",
@@ -142,8 +171,11 @@ const Orders = () => {
     formState: { errors },
     handleSubmit,
     reset,
+    setValue,
   } = useForm();
   const onSubmit = (data: any) => {
+    let submitedData = data;
+    delete submitedData.min;
     actions.setQuery({ ...query, ...data });
   };
 
@@ -166,6 +198,45 @@ const Orders = () => {
     };
     getCiteies();
   }, []);
+
+  const [statuses, setStatuses] = useState<any[]>([]);
+  const [statuesesLoading, setStatusesLoading] = useState(true);
+  useEffect(() => {
+    const getStatuses = async () => {
+      try {
+        const { data } = await EndPoints.status.getData({
+          page: 1,
+          pageSize: 999999,
+        });
+
+        setStatuses(data?.Status ?? []);
+      } catch (err) {
+      } finally {
+        setStatusesLoading(false);
+      }
+    };
+    getStatuses();
+  }, []);
+
+  const [regions, setRegions] = useState<any[]>([]);
+  const [regionsLoading, setRegionsLoading] = useState(true);
+  useEffect(() => {
+    const getStatuses = async () => {
+      try {
+        const { data } = await EndPoints.region.getData({
+          page: 1,
+          pageSize: 999999,
+        });
+
+        setRegions(data?.data ?? []);
+      } catch (err) {
+      } finally {
+        setRegionsLoading(false);
+      }
+    };
+    getStatuses();
+  }, []);
+
   return (
     <>
       <PageHeader
@@ -194,11 +265,22 @@ const Orders = () => {
       <FilterCard
         onReset={() => {
           reset();
+          setValue("mindate", undefined);
+          setValue("maxdate", undefined);
+          setValue("min", undefined);
           actions.setQuery({
             page: 1,
             pageSize: 10,
             CityID: undefined,
             RegionName: undefined,
+            mindate: undefined,
+            maxdate: undefined,
+            city: undefined,
+            clientname: undefined,
+            customerphone: undefined,
+            region: undefined,
+            salesrep: undefined,
+            status: undefined,
           });
         }}
         applyLoading={loading.includes("list")}
@@ -228,6 +310,8 @@ const Orders = () => {
                       <Select
                         {...field}
                         size="middle"
+                        showSearch
+                        filterOption={filterOption}
                         style={{ width: "100%" }}
                         placeholder={"المدينة"}
                         options={cities?.map((item) => {
@@ -236,6 +320,91 @@ const Orders = () => {
                             label: item?.cityname,
                           };
                         })}
+                      />
+                    );
+                  }}
+                />
+              </FormItem>
+            </Col>
+            <Col xs={24} lg={12}>
+              <FormItem label="المنطقة">
+                <Controller
+                  control={control}
+                  name="region"
+                  render={({ field }) => {
+                    return (
+                      <Select
+                        {...field}
+                        size="middle"
+                        showSearch
+                        filterOption={filterOption}
+                        style={{ width: "100%" }}
+                        loading={regionsLoading}
+                        placeholder={"المنطقة"}
+                        options={regions?.map((item) => {
+                          return {
+                            value: item?.RegionID,
+                            label: item?.RegionName,
+                          };
+                        })}
+                      />
+                    );
+                  }}
+                />
+              </FormItem>
+            </Col>
+            <Col xs={24} lg={12}>
+              <FormItem label="الحالة">
+                <Controller
+                  control={control}
+                  name="status"
+                  render={({ field }) => {
+                    return (
+                      <Select
+                        {...field}
+                        size="middle"
+                        style={{ width: "100%" }}
+                        loading={statuesesLoading}
+                        placeholder={"الحالة"}
+                        options={statuses?.map((item) => {
+                          return {
+                            value: item?.Statusno,
+                            label: item?.Status,
+                          };
+                        })}
+                      />
+                    );
+                  }}
+                />
+              </FormItem>
+            </Col>
+            <Col xs={24} lg={12}>
+              <FormItem label="من و الى التاريخ">
+                <Controller
+                  control={control}
+                  name="min"
+                  render={({ field }) => {
+                    return (
+                      <RangePicker
+                        {...field}
+                        style={{ width: "100%" }}
+                        popupStyle={{ direction: "ltr" }}
+                        allowClear={true}
+                        onReset={() => {
+                          setValue("mindate", undefined);
+                          setValue("maxdate", undefined);
+                        }}
+                        onChange={(val) => {
+                          setValue(
+                            "mindate",
+                            val ? val[0]?.format("YYYY-MM-DD") : undefined
+                          );
+                          setValue(
+                            "maxdate",
+                            val ? val[1]?.format("YYYY-MM-DD") : undefined
+                          );
+                          field.onChange(val);
+                        }}
                       />
                     );
                   }}

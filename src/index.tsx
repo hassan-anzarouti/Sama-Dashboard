@@ -9,7 +9,6 @@ import AppContextProvider from "./contexts/app/provider";
 import { ConfigProvider } from "antd";
 import arEG from "antd/locale/ar_EG";
 
-
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
@@ -26,6 +25,7 @@ root.render(
                 DatePicker: {
                   colorLink: "#F5DEB4",
                   colorLinkHover: "#7E4F25",
+                  cellActiveWithRangeBg: "lightgrey",
                 },
               },
               token: {
