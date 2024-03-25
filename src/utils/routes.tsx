@@ -20,6 +20,7 @@ import {
   FaToolbox,
   FaTools,
   FaUser,
+  FaUserAlt,
   FaUserLock,
   FaUserTie,
   FaUsers,
@@ -39,6 +40,9 @@ import ClientForm from "../components/clients/clients-form";
 import ClientDetailsPage from "../components/clients/clients-details";
 import OrdersPage from "../pages/orders";
 import OrderForm from "../components/orders/orders-form";
+import SalesRepPage from "../pages/salesRep";
+import SalesRepForm from "../components/salesRep/salesRep-form";
+import SalesRepDetailsPage from "../components/salesRep/salesRep-details";
 
 // import { GiPayMoney, GiSplitArrows, GiTable } from 'react-icons/gi'
 
@@ -139,6 +143,27 @@ export const routes: IRoute[] = [
       {
         path: "details/:id",
         component: <EmployeeDetailsPage />,
+      },
+    ],
+  },
+  {
+    labelKey: "المندوبين",
+    icon: <FaUserAlt />,
+    path: "/sales-reps",
+    hasSubMenus: false,
+    component: <SalesRepPage />,
+    crudRoutes: [
+      {
+        path: "update/:id",
+        component: <SalesRepForm />,
+      },
+      {
+        path: "create",
+        component: <SalesRepForm />,
+      },
+      {
+        path: "details/:id",
+        component: <SalesRepDetailsPage />,
       },
     ],
   },

@@ -72,6 +72,15 @@ const Orders = () => {
       },
     },
     {
+      title: "المندوب",
+      dataIndex: "salesRep",
+      align: "center",
+      key: "salesRep",
+      render: (_, record) => {
+        return <>{record?.SalesReps?.SalesRepName}</>;
+      },
+    },
+    {
       title: "الحالة",
       dataIndex: "Status_Orders_StatusToStatus",
       align: "center",
@@ -237,6 +246,46 @@ const Orders = () => {
     getStatuses();
   }, []);
 
+  // Sales Rep
+  const [salesReps, setSalesReps] = useState<any[]>([]);
+  const [salesRepsLoading, setSalesRepsLoading] = useState(true);
+  useEffect(() => {
+    const getSalesReps = async () => {
+      try {
+        const { data } = await EndPoints.salesRep.getData({
+          page: 1,
+          pageSize: 999999,
+        });
+
+        setSalesReps(data?.SalesReps ?? []);
+      } catch (err) {
+      } finally {
+        setSalesRepsLoading(false);
+      }
+    };
+    getSalesReps();
+  }, []);
+
+  // clients
+  const [clients, setClients] = useState<any[]>([]);
+  const [clientsLoading, setClientsLoading] = useState(true);
+  useEffect(() => {
+    const getClients = async () => {
+      try {
+        const { data } = await EndPoints.client.getData({
+          page: 1,
+          pageSize: 999999,
+        });
+
+        setClients(data?.clients ?? []);
+      } catch (err) {
+      } finally {
+        setClientsLoading(false);
+      }
+    };
+    getClients();
+  }, []);
+
   return (
     <>
       <PageHeader
@@ -345,6 +394,62 @@ const Orders = () => {
                           return {
                             value: item?.RegionID,
                             label: item?.RegionName,
+                          };
+                        })}
+                      />
+                    );
+                  }}
+                />
+              </FormItem>
+            </Col>
+
+            <Col xs={24} lg={12}>
+              <FormItem label="العميل">
+                <Controller
+                  control={control}
+                  name="clientname"
+                  render={({ field }) => {
+                    return (
+                      <Select
+                        {...field}
+                        size="middle"
+                        showSearch
+                        filterOption={filterOption}
+                        style={{ width: "100%" }}
+                        loading={clientsLoading}
+                        placeholder={"العميل"}
+                        options={clients?.map((item) => {
+                          return {
+                            value: item?.CustNo,
+                            label: item?.customername,
+                          };
+                        })}
+                      />
+                    );
+                  }}
+                />
+              </FormItem>
+            </Col>
+
+            <Col xs={24} lg={12}>
+              <FormItem label="المندوب">
+                <Controller
+                  control={control}
+                  name="salesrep"
+                  render={({ field }) => {
+                    return (
+                      <Select
+                        {...field}
+                        size="middle"
+                        showSearch
+                        filterOption={filterOption}
+                        style={{ width: "100%" }}
+                        loading={salesRepsLoading}
+                        placeholder={"المندوب"}
+                        options={salesReps?.map((item) => {
+                          return {
+                            value: item?.RepNo,
+                            label: item?.SalesRepName,
                           };
                         })}
                       />

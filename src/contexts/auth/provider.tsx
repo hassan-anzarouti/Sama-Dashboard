@@ -94,7 +94,6 @@ const AuthContextProvider: React.FC<IProps> = (props) => {
 
         const { data } = await EndPoints.auth.login({
           ...request,
-          fromDashboard: true,
         } as any);
 
         successNotification(
