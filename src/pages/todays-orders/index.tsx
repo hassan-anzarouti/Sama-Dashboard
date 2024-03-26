@@ -157,6 +157,7 @@ const Orders = () => {
     actions.setQuery({
       ...query,
       mindate: dayjs(new Date()).format("YYYY-MM-DD"),
+      maxdate: dayjs(new Date()).format("YYYY-MM-DD"),
     });
   }, []);
 
