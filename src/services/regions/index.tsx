@@ -1,8 +1,8 @@
 import http from "../../api/axios";
-import { IPagination } from "../../model/pagination";
+import { IRegionQuery } from "../../model/regions/query";
 
 class RegionService {
-  getData = (params: IPagination): Promise<any> =>
+  getData = (params: IRegionQuery): Promise<any> =>
     http.get("/Region", { params });
 
   createRegion = (data: any): Promise<any> => http.post("/Region/create", data);

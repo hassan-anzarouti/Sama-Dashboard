@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Form, Input, Button, Image } from "antd";
+import { Form, Input, Button, Image, Select } from "antd";
 import classes from "./style.module.scss";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import styles from "./style.module.scss";
@@ -71,7 +71,38 @@ const Login: React.FC = () => {
           }}
         >
           <Form.Item
-            name="employee_name"
+            name="role"
+            label="تسجيل الدخول كـ "
+            initialValue={"employee"}
+            rules={[
+              {
+                type: "string",
+              },
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Select
+              placeholder={"تسجيل الدخول كـ"}
+              options={[
+                {
+                  label: "مندوب",
+                  value: "salesrep",
+                },
+                {
+                  label: "موظف",
+                  value: "employee",
+                },
+                {
+                  label: "عميل",
+                  value: "client",
+                },
+              ]}
+            />
+          </Form.Item>
+          <Form.Item
+            name="username"
             label="اسم المستخدم"
             rules={[
               {
