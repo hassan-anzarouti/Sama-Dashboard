@@ -299,16 +299,16 @@ const Orders = () => {
           >
             تحديث
           </Button>,
-          <Button
-            type="primary"
-            key={2}
-            onClick={() => {
-              navigate(`/orders/create`);
-            }}
-            icon={<PlusOutlined />}
-          >
-            اضافة
-          </Button>,
+          // <Button
+          //   type="primary"
+          //   key={2}
+          //   onClick={() => {
+          //     navigate(`/orders/create`);
+          //   }}
+          //   icon={<PlusOutlined />}
+          // >
+          //   اضافة
+          // </Button>,
         ]}
       />
       <FilterCard
