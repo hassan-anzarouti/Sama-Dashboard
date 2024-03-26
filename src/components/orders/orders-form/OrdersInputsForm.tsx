@@ -142,6 +142,26 @@ const OrdersInputsForm = () => {
     getCity();
   }, [selectedCity]);
 
+  // Sales Rep
+  const [salesReps, setSalesReps] = useState<any[]>([]);
+  const [salesRepsLoading, setSalesRepsLoading] = useState(true);
+  useEffect(() => {
+    const getSalesReps = async () => {
+      try {
+        const { data } = await EndPoints.salesRep.getData({
+          page: 1,
+          pageSize: 999999,
+        });
+
+        setSalesReps(data?.SalesReps ?? []);
+      } catch (err) {
+      } finally {
+        setSalesRepsLoading(false);
+      }
+    };
+    getSalesReps();
+  }, []);
+
   const { details } = useContext(OrderContext);
 
   return (
@@ -311,10 +331,20 @@ const OrdersInputsForm = () => {
             label="المندوب"
             rules={{ required: true }}
             name="SalesRep"
-            input={{ type: "number" }}
+            width="large"
+            input={{
+              type: "select",
+              loading: salesRepsLoading,
+              allowSearch: true,
+              options: salesReps?.map((item) => {
+                return {
+                  value: item?.RepNo,
+                  label: item?.SalesRepName,
+                };
+              }),
+            }}
           />
         </Col>
-        {/* TODO when selecting a city the fields chang auto and the are disabled */}
         <Col xs={24} lg={12}>
           <FormItem label="أجرة المندوب" required>
             <Controller

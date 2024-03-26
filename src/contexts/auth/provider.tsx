@@ -100,16 +100,14 @@ const AuthContextProvider: React.FC<IProps> = (props) => {
           "تم تسحيل الدخول",
           `أهلا ${data?.user?.EmployeeName}, نتمنى أن تكون بخير`
         );
-        console.log("login data", data);
 
-        localStorage.setItem(ACCESS_TOKEN, data.token);
-        console.log("token", localStorage.getItem(ACCESS_TOKEN));
+        localStorage.setItem(ACCESS_TOKEN, data.employeetoken);
 
-        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("user", JSON.stringify(data?.employee));
 
         dispatch({
           type: "LOGIN",
-          payload: { user: data?.user },
+          payload: { user: data?.employee },
         });
       },
       fallback: (error: any) => {

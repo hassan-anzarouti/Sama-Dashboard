@@ -43,6 +43,7 @@ import OrderForm from "../components/orders/orders-form";
 import SalesRepPage from "../pages/salesRep";
 import SalesRepForm from "../components/salesRep/salesRep-form";
 import SalesRepDetailsPage from "../components/salesRep/salesRep-details";
+import TodaysOrdersPage from "../pages/todays-orders";
 
 // import { GiPayMoney, GiSplitArrows, GiTable } from 'react-icons/gi'
 
@@ -196,9 +197,21 @@ export const routes: IRoute[] = [
     hasSubMenus: true,
     subMenus: [
       {
+        path: "/add-order",
+        labelKey: "إضافة طلب",
+        component: <OrderForm />,
+        crudRoutes: [
+          {
+            path: "",
+            component: <></>,
+          },
+        ],
+      },
+      {
         path: "/orders",
         labelKey: "سجل الطلبيات",
         component: <OrdersPage />,
+
         crudRoutes: [
           {
             path: "update/:id",
@@ -208,6 +221,25 @@ export const routes: IRoute[] = [
             path: "create",
             component: <OrderForm />,
           },
+          {
+            path: "details/:id",
+            component: <ClientDetailsPage />,
+          },
+        ],
+      },
+      {
+        path: "/today-orders",
+        labelKey: "طلبيات اليوم",
+        component: <TodaysOrdersPage />,
+        crudRoutes: [
+          {
+            path: "update/:id",
+            component: <OrderForm />,
+          },
+          // {
+          //   path: "create",
+          //   component: <OrderForm />,
+          // },
           {
             path: "details/:id",
             component: <ClientDetailsPage />,

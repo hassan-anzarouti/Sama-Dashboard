@@ -46,6 +46,8 @@ function MainForm<T>(props: IProps<T>) {
         successNotification("تمت العملية بنجاح");
         if (!props.dontNavigate) {
           navigate(-1);
+        }else{
+          reset()
         }
       },
       fallback: (error: any) => {

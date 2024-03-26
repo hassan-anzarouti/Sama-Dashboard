@@ -62,6 +62,7 @@ const Form = () => {
       <MainForm
         formId="order-form"
         title="Create order"
+        dontNavigate={true}
         subTitle="Adding a new order"
         onSubmit={async (data) => {
           //   const formData = new FormData()
