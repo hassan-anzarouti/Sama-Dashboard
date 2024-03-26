@@ -101,13 +101,13 @@ const AuthContextProvider: React.FC<IProps> = (props) => {
           `أهلا ${data?.user?.EmployeeName}, نتمنى أن تكون بخير`
         );
 
-        localStorage.setItem(ACCESS_TOKEN, data.employeetoken);
+        localStorage.setItem(ACCESS_TOKEN, data.token);
 
-        localStorage.setItem("user", JSON.stringify(data?.employee));
+        localStorage.setItem("user", JSON.stringify(data?.user));
 
         dispatch({
           type: "LOGIN",
-          payload: { user: data?.employee },
+          payload: { user: data?.user },
         });
       },
       fallback: (error: any) => {
