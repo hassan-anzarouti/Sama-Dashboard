@@ -32,7 +32,7 @@ const Login: React.FC = () => {
           alt={"logo"}
           style={{ marginBottom: "1rem" }}
         />
-        <span
+        {/* <span
           dir="rtl"
           style={{
             position: "relative",
@@ -45,8 +45,8 @@ const Login: React.FC = () => {
           }}
         >
           SAMA
-        </span>
-        <span
+        </span> */}
+        {/* <span
           style={{
             color: "black",
             opacity: "0.5",
@@ -58,7 +58,7 @@ const Login: React.FC = () => {
           }}
         >
           لوحة التحكم
-        </span>
+        </span> */}
         <Form
           layout="vertical"
           onFinish={onSubmit}

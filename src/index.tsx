@@ -25,12 +25,7 @@ root.render(
                 DatePicker: {
                   colorLink: "#F5DEB4",
                   colorLinkHover: "#7E4F25",
-                  cellActiveWithRangeBg: "lightgrey",
-                },
-
-                Select: {
-                  optionSelectedBg: "lightgrey",
-                  // colorBgContainer: "red",
+                  // cellActiveWithRangeBg: "lightgrey",
                 },
               },
               token: {

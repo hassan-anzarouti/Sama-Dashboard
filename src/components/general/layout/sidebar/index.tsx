@@ -1,8 +1,12 @@
 import { useContext, useState } from "react";
-import { Avatar, Badge, Flex, Layout, Menu, Popover } from "antd";
+import { Avatar, Badge, Button, Flex, Layout, Menu, Popover } from "antd";
 import "./style.css";
 import MenuSide from "../menu";
-import { UserOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+} from "@ant-design/icons";
 // import ProfileCard from "../../../auth/profile-card";
 import { FiBell } from "react-icons/fi";
 import AppContext from "../../../../contexts/app/context";
@@ -26,11 +30,16 @@ const SideBar = () => {
     <Layout.Sider
       className="sidebar"
       width={"17.5rem"}
+      // theme="light"
+      // collapsed={screenSize === "mobileOrTablet" || collapsed}
+      // collapsible={screenSize !== "mobileOrTablet"}
+      // onCollapse={setCollapsed}
+      // trigger={null}
+
       theme="light"
-      collapsed={screenSize === "mobileOrTablet" || collapsed}
       collapsible={screenSize !== "mobileOrTablet"}
-      onCollapse={setCollapsed}
-      trigger={null}
+      collapsed={screenSize === "mobileOrTablet" || collapsed}
+      onCollapse={(value) => setCollapsed(value)}
     >
       <div
         style={{
@@ -54,7 +63,7 @@ const SideBar = () => {
           >
             <Flex justify="center" style={{ width: "100%" }}>
               <img
-                width={70}
+                width={!collapsed ? 80 : 70}
                 style={{ objectFit: "contain" }}
                 src="/images/logo.png"
               />
@@ -96,27 +105,34 @@ const SideBar = () => {
                 <div className={"avatarContainer"}>
                   <Avatar
                     size="large"
+                    style={{ marginInlineStart: collapsed ? "-0.2rem" : "0px" }}
                     src={
                       user?.photo?.url ?? (
                         <UserOutlined
                           style={{
-                            fontSize: "1.2rem",
-                            color: "#1D1D1D",
+                            fontSize: "2.0rem",
                             backgroundColor: "lightgray",
                             borderRadius: "999px",
                           }}
                         />
                       )
                     }
+                    // className={styles.avatar}
                   />
 
                   {screenSize !== "mobileOrTablet" && (
-                    <div className={"username"}>
-                      <div dir="ltr">{`${user?.EmployeeName ?? "Admin"}`}</div>
-                      <small style={{ opacity: "0.5" }}>
-                        {`${user?.FullName ?? "admin"}`}
-                      </small>
-                    </div>
+                    <>
+                      {!collapsed && (
+                        <div className={"username"}>
+                          <div dir="ltr">{`${
+                            user?.EmployeeName ?? "Admin"
+                          }`}</div>
+                          <small style={{ opacity: "0.5" }}>
+                            {`${user?.FullName ?? "admin"}`}
+                          </small>
+                        </div>
+                      )}
+                    </>
                   )}
                 </div>
               </Popover>
@@ -147,7 +163,8 @@ const SideBar = () => {
           <MenuSide />
         </div>
         {/* Footer */}
-        <div style={{ color: "white", textAlign: "center" }}>
+
+        <div style={{ color: "#1D1D1D", textAlign: "center" }}>
           <h5
             style={{
               opacity: "0.8",

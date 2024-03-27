@@ -13,6 +13,7 @@ import EndPoints from "../../services/end-points";
 import FormItem from "../../components/general/form-item";
 import ClientContext from "../../contexts/clients/context";
 import ClientContextProvider from "../../contexts/clients/provider";
+import dayjs from "dayjs";
 
 const Clients = () => {
   const columns: ColumnProps<any>[] = [
@@ -33,6 +34,9 @@ const Clients = () => {
       dataIndex: "ACDate",
       align: "center",
       key: "ACDate",
+      render: (val) => {
+        return <>{dayjs(val).format("HH:MM - YYYY-MM-DD ")}</>;
+      },
     },
     {
       title: "الاجرائات",

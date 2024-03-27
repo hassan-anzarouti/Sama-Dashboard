@@ -39,6 +39,8 @@ const NavBar = () => {
         onClick={() => setVisible(true)}
       />
 
+      <img width={70} style={{ objectFit: "contain" }} src="/images/logo.png" />
+
       <div>
         <div
           style={{
@@ -71,9 +73,16 @@ const NavBar = () => {
                 size="large"
                 src={
                   user?.photo?.url ?? (
-                    <UserOutlined style={{ fontSize: "1.5rem" }} />
+                    <UserOutlined
+                      style={{
+                        fontSize: "2.0rem",
+                        backgroundColor: "lightgray",
+                        borderRadius: "999px",
+                      }}
+                    />
                   )
                 }
+                // className={styles.avatar}
               />
 
               <div className={"username"}>

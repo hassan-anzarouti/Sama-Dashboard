@@ -47,7 +47,7 @@ const Home = () => {
       <div className={styles.welcomeConatiner}>
         <div
           style={{
-            padding: "12px",
+            padding: "4px",
             // display: "flex",
             // height: "100%",
             // justifyContent: "center",
@@ -56,6 +56,12 @@ const Home = () => {
         >
           <img src="/images/logo.png" alt="home" className={styles.image} />
         </div>
+
+        <img
+          src="/images/clouds.png"
+          alt="home"
+          className={styles.cloudsImage}
+        />
         <Title
           style={{ margin: "auto", textAlign: "center" }}
           className={styles.content}
@@ -63,8 +69,6 @@ const Home = () => {
         >
           <span className={styles.title}>
             أهلا بك في <br />
-            <span className={styles.siteName}>SAMA</span>
-            <br />
             لوحة التحكم
           </span>
         </Title>
