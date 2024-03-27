@@ -27,16 +27,16 @@ root.render(
                   colorLinkHover: "#7E4F25",
                   cellActiveWithRangeBg: "lightgrey",
                 },
-                Menu: {
-                  colorBgBase: "red",
-                },
+                // Menu: {
+                //   colorBgBase: "red",
+                // },
                 Select: {
                   optionSelectedBg: "lightgrey",
                   // colorBgContainer: "red",
                 },
               },
               token: {
-                colorPrimary: "#081f3d",
+                colorPrimary: "#169BD5",
                 colorTextSecondary: "#17427A",
 
                 fontFamily: "Cairo",
