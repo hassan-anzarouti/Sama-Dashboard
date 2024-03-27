@@ -124,7 +124,7 @@ const NavBar = () => {
           </Flex>
         }
         headerStyle={{
-          backgroundColor: "rgb(33, 37, 41)",
+          backgroundColor: "#c6e1fa",
           color: "white",
           placeItems: "flex-end",
         }}
@@ -132,11 +132,11 @@ const NavBar = () => {
         placement="right"
         className="drawer"
         width={"17.5rem"}
-        bodyStyle={{ padding: 0, backgroundColor: "rgb(33, 37, 41)" }}
+        bodyStyle={{ padding: 0, backgroundColor: "#c6e1fa" }}
         onClose={() => setVisible(false)}
         open={visible}
         footerStyle={{
-          backgroundColor: "rgb(33, 37, 41)",
+          backgroundColor: "#c6e1fa",
           color: "white",
         }}
         footer={
