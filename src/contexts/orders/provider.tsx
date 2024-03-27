@@ -47,7 +47,7 @@ const OrderContextProvider: React.FC<IProps> = (props) => {
     // dispatch({ type: 'SET_DETAILSS', payload: { details: data } })
   };
 
-  const createOrder = async (request: any) => {
+  const createOrder = async (request: any, dontGetOrders?: boolean) => {
     await execute({
       callback: async () => {
         dispatch({
@@ -58,8 +58,9 @@ const OrderContextProvider: React.FC<IProps> = (props) => {
         console.log(request);
 
         await EndPoints.order.createOrder(request);
-
-        getData();
+        if (!dontGetOrders) {
+          getData();
+        }
       },
       fallback: (error) => {},
       finallyCallback: () => {

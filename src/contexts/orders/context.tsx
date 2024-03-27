@@ -24,7 +24,7 @@ export interface IExternalState extends IInternalState {
     getData: () => void;
     getDetails: (id: number) => void;
 
-    createOrder: (request: any) => void;
+    createOrder: (request: any, dontGetOrders?: boolean) => void;
     updateOrder: (id: number, request: any) => void;
     deleteOrder: (id: number) => void;
     setQuery: (query: IOrderQuery) => void;

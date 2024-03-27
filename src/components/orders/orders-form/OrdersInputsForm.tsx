@@ -268,7 +268,7 @@ const OrdersInputsForm = () => {
           />
         </Col>
 
-        <Col xs={24} lg={12}>
+        {/* <Col xs={24} lg={12}>
           <FieldBuilder
             label="الموظف"
             rules={{ required: true }}
@@ -287,7 +287,7 @@ const OrdersInputsForm = () => {
               }),
             }}
           />
-        </Col>
+        </Col> */}
 
         <Col xs={24} lg={12}>
           <FieldBuilder

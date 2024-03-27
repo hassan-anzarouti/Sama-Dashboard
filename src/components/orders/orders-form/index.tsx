@@ -1,4 +1,12 @@
-import { Button, Col, DatePicker, Divider, Row, Select } from "antd";
+import {
+  Button,
+  Col,
+  DatePicker,
+  Divider,
+  FloatButton,
+  Row,
+  Select,
+} from "antd";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import FieldBuilder from "../../form-components/field-builder";
 import MainForm from "../../form-components/main-form";
@@ -12,11 +20,13 @@ import FormItem from "../../general/form-item";
 import Controller from "../../form-components/controller";
 import { filterOption } from "../../../utils/helpers/functions";
 import OrdersInputsForm from "./OrdersInputsForm";
+import AuthContext from "../../../contexts/auth/context";
 
 const Form = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { loading, details, actions } = useContext(OrderContext);
+  const { authUser } = useContext(AuthContext);
 
   const { state } = useLocation();
 
@@ -31,33 +41,45 @@ const Form = () => {
     }
   }, []);
 
+  const scrol = () => {
+    const scrollableElements = document.querySelectorAll(
+      "#root > div > div > main"
+    ); // Replace with your selector
+
+    scrollableElements.forEach((element) => {
+      element.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  };
+
   return (
     <>
-      <PageHeader
-        title={details ? "تعديل الطلب" : "انشاء طلب"}
-        subTitle={details ? "يتم تعديل الطلب" : "اضافة طلب جديد"}
-        extra={[
-          <Button
-            key={0}
-            loading={loading.includes("create") || loading.includes("update")}
-            onClick={() => {
-              navigate(-1);
-            }}
-          >
-            الغاء
-          </Button>,
-          <Divider key={1} type="vertical" />,
-          <Button
-            loading={loading.includes("create") || loading.includes("update")}
-            form="order-form"
-            key={2}
-            htmlType="submit"
-            type="primary"
-          >
-            حفظ
-          </Button>,
-        ]}
-      />
+      <div style={{ position: "sticky", top: 0, zIndex: 999 }}>
+        <PageHeader
+          title={details ? "تعديل الطلب" : "انشاء طلب"}
+          subTitle={details ? "يتم تعديل الطلب" : "اضافة طلب جديد"}
+          extra={[
+            <Button
+              key={0}
+              loading={loading.includes("create") || loading.includes("update")}
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              الغاء
+            </Button>,
+            <Divider key={1} type="vertical" />,
+            <Button
+              loading={loading.includes("create") || loading.includes("update")}
+              form="order-form"
+              key={2}
+              htmlType="submit"
+              type="primary"
+            >
+              حفظ
+            </Button>,
+          ]}
+        />
+      </div>
 
       <MainForm
         formId="order-form"
@@ -76,8 +98,18 @@ const Form = () => {
           //     }
           //   })
           details
-            ? await actions.updateOrder(details?.id, data)
-            : await actions.createOrder({ ...data, RegionID: 50000 });
+            ? await actions.updateOrder(details?.id, {
+                ...data,
+                Employee: authUser?.EmployeeID,
+              })
+            : await actions.createOrder(
+                {
+                  ...data,
+                  RegionID: 50000,
+                  Employee: authUser?.EmployeeID,
+                },
+                true
+              );
         }}
         defaultValues={{
           ...details,
@@ -89,6 +121,8 @@ const Form = () => {
       >
         <OrdersInputsForm />
       </MainForm>
+
+      <Button onClick={() => scrol()}>Scroll</Button>
     </>
   );
 };
