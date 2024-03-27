@@ -31,8 +31,8 @@ const MenuSide = () => {
   return (
     <Menu
       mode="inline"
-      style={{ background: "rgb(33, 37, 41)" }}
-      theme="dark"
+      style={{ background: "#C6E1FA" }}
+      theme="light"
       defaultSelectedKeys={[current]}
       selectedKeys={[current]}
       items={routes.map((route) => {
