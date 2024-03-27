@@ -105,7 +105,12 @@ const Orders = () => {
         );
       },
     },
-
+    {
+      title: "كلف إضافية",
+      dataIndex: "ExtraFees",
+      align: "center",
+      key: "ExtraFees",
+    },
     {
       title: "المبلغ الكامل",
       dataIndex: "TotalPrice",
