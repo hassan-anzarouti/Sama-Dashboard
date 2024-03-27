@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Avatar, Badge, Layout, Menu, Popover } from "antd";
+import { Avatar, Badge, Flex, Layout, Menu, Popover } from "antd";
 import "./style.css";
 import MenuSide from "../menu";
 import { UserOutlined } from "@ant-design/icons";
@@ -52,33 +52,23 @@ const SideBar = () => {
               width: "100%",
             }}
           >
-            <img
-              width={60}
-              style={{ objectFit: "contain" }}
-              src="/images/logo.png"
-            />
+            <Flex justify="center" style={{ width: "100%" }}>
+              <img
+                width={70}
+                style={{ objectFit: "contain" }}
+                src="/images/logo.png"
+              />
+            </Flex>
             {screenSize !== "mobileOrTablet" ? (
               <div
                 style={{
                   display: "flex",
                   alignItems: "center",
                   width: "100%",
-                  justifyContent: "space-between",
+                  justifyContent: "center",
                   gap: "4px",
                 }}
-              >
-                <div className="logo-title">SAMA</div>
-                <div
-                  style={{
-                    color: "white",
-                    opacity: "0.5",
-                    fontSize: "0.7rem",
-                    fontWeight: "400",
-                  }}
-                >
-                  لوحة التحكم
-                </div>
-              </div>
+              ></div>
             ) : (
               ""
             )}
@@ -110,8 +100,9 @@ const SideBar = () => {
                       user?.photo?.url ?? (
                         <UserOutlined
                           style={{
-                            fontSize: "1.5rem",
-                            // backgroundColor: "lightgray",
+                            fontSize: "1.2rem",
+                            color: "#1D1D1D",
+                            backgroundColor: "lightgray",
                             borderRadius: "999px",
                           }}
                         />

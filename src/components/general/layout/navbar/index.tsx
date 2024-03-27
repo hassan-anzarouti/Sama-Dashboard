@@ -91,53 +91,31 @@ const NavBar = () => {
 
       <Drawer
         title={
-          <Flex justify="space-between" align="center">
+          <Flex justify="center" align="center">
             <Image
               preview={false}
               src={`/images/logo.png`}
-              width={60}
+              width={70}
               alt={"logo"}
               style={{ marginBottom: "1rem" }}
             />
-            <span
-              dir="rtl"
-              style={{
-                color: "white",
-                fontSize: "1rem",
-                fontWeight: "600",
-              }}
-            >
-              SAMA
-            </span>
-            <span
-              style={{
-                color: "white",
-                opacity: "0.5",
-                fontSize: "0.895rem",
-                fontWeight: "400",
-                position: "relative",
-                right: "5px",
-              }}
-            >
-              لوحة التحكم
-            </span>
           </Flex>
         }
         headerStyle={{
-          backgroundColor: "#c6e1fa",
-          color: "white",
+          backgroundColor: "white",
+          color: "#171A1D",
           placeItems: "flex-end",
         }}
         closable={false}
         placement="right"
         className="drawer"
         width={"17.5rem"}
-        bodyStyle={{ padding: 0, backgroundColor: "#c6e1fa" }}
+        bodyStyle={{ padding: 0, backgroundColor: "white" }}
         onClose={() => setVisible(false)}
         open={visible}
         footerStyle={{
-          backgroundColor: "#c6e1fa",
-          color: "white",
+          backgroundColor: "white",
+          color: "#171A1D",
         }}
         footer={
           <>

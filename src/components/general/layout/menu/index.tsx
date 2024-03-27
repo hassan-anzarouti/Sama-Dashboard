@@ -31,7 +31,7 @@ const MenuSide = () => {
   return (
     <Menu
       mode="inline"
-      style={{ background: "#C6E1FA" }}
+      style={{ background: "white" }}
       theme="light"
       defaultSelectedKeys={[current]}
       selectedKeys={[current]}

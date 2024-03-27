@@ -40,11 +40,11 @@
 }
 
 .ant-menu .ant-menu-inline.ant-menu-sub {
-  background: #1a1d2057 !important;
+  background: transparent !important;
 }
 
 .ant-menu .ant-menu-sub.ant-menu-vertical {
-  background: #212529 !important;
+  background: white !important;
 }
 
 .spinner-container {
