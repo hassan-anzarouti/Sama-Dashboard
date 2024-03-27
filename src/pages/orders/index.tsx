@@ -48,6 +48,12 @@ const Orders = () => {
       },
     },
     {
+      title: "اسم الزبون",
+      dataIndex: "CustomerName",
+      align: "center",
+      key: "CustomerName",
+    },
+    {
       title: "رقم الزبون",
       dataIndex: "CustomerPhone",
       align: "center",
@@ -99,18 +105,7 @@ const Orders = () => {
         );
       },
     },
-    {
-      title: "اسم العميل",
-      dataIndex: "CustomerName",
-      align: "center",
-      key: "CustomerName",
-    },
-    {
-      title: "التوصيل",
-      dataIndex: "Delivery",
-      align: "center",
-      key: "Delivery",
-    },
+
     {
       title: "المبلغ الكامل",
       dataIndex: "TotalPrice",

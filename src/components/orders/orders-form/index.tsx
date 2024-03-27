@@ -121,8 +121,6 @@ const Form = () => {
       >
         <OrdersInputsForm />
       </MainForm>
-
-      <Button onClick={() => scrol()}>Scroll</Button>
     </>
   );
 };

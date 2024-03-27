@@ -106,8 +106,11 @@ const OrdersInputsForm = () => {
           page: 1,
           pageSize: 999999,
         });
+        let statusData = data?.Status?.filter(
+          (item: any) => item.Statusno != 9
+        );
 
-        setStatuses(data?.Status ?? []);
+        setStatuses(statusData ?? []);
       } catch (err) {
       } finally {
         setStatusesLoading(false);
