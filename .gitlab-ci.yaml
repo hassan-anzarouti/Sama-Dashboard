@@ -1,8 +1,0 @@
-stages:
- - deploy
-deploy:
- stage: deploy
- script:
-  - npm install
-  - npm run build
-  - cp -r build/* /var/www/91.108.113.143/

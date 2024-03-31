@@ -6,3 +6,5 @@ deploy:
   - npm install
   - npm run build
   - cp -r build/* /var/www/91.108.113.143/
+ tags:
+  - SamaHostinger
