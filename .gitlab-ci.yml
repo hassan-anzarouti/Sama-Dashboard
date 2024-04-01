@@ -1,9 +1,8 @@
 stages:
  - deploy
 deploy:
+ image: node:18.16.1   
  stage: deploy
  script:
   - npm install
   - npm run build
- tags:
-  - ReactRunner
